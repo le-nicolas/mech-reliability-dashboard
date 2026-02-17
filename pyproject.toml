@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mech-reliability-dashboard"
+version = "0.1.0"
+description = "Desktop reliability analytics app for rotating equipment"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pandas>=2.2,<3.0",
+  "numpy>=1.26,<3.0",
+  "PySide6>=6.7,<7.0",
+  "matplotlib>=3.8,<4.0",
+  "openpyxl>=3.1,<4.0",
+]
+
+[project.scripts]
+reliability-dashboard = "app.main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

@@ -1,0 +1,2 @@
+"""Mechanical reliability dashboard package."""
+
