@@ -2,7 +2,7 @@
 
 Desktop app for analyzing **rotating equipment reliability** (pumps, fans, compressors, motors) from maintenance CSV logs.
 
-![Reliability Dashboard Preview](assets/dashboard-preview-v2.svg)
+![Reliability Dashboard Preview](assets/dashboard-preview-v3.svg)
 
 ## What It Does
 - Imports maintenance/failure CSV files.
@@ -50,6 +50,8 @@ mech_reliability_app/
     ui.py
   assets/
     dashboard-preview.svg
+    dashboard-preview-v2.svg
+    dashboard-preview-v3.svg
   sample_data/
     maintenance_log.csv
   scripts/

@@ -28,7 +28,7 @@ from app.io_utils import resource_path
 
 
 class ReliabilityWindow(QMainWindow):
-    DEFAULT_CAD_PATH = Path(r"c:\Users\User\Downloads\incline-conveyor-6.snapshot.3\Rotating.obj")
+    DEFAULT_CAD_PATH = Path(r"c:\Users\User\Downloads\gear-box-47.snapshot.3\rotating_equipment.obj")
 
     def __init__(self) -> None:
         super().__init__()
