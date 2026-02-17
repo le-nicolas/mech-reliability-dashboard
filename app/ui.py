@@ -318,9 +318,7 @@ class ReliabilityWindow(QMainWindow):
 
     def _read_obj_mesh(self, path: Path, max_faces: int = 35000) -> tuple[np.ndarray, np.ndarray, int]:
         vertices: list[tuple[float, float, float]] = []
-        kept_faces: list[tuple[int, int, int]] = []
-        total_faces = 0
-        keep_step = 1
+        all_faces: list[tuple[int, int, int]] = []
 
         with path.open("r", encoding="utf-8", errors="ignore") as file:
             for raw_line in file:
@@ -362,22 +360,23 @@ class ReliabilityWindow(QMainWindow):
 
                 for i in range(1, len(indices) - 1):
                     tri = (indices[0], indices[i], indices[i + 1])
-                    total_faces += 1
-                    if (total_faces - 1) % keep_step == 0:
-                        kept_faces.append(tri)
-                    if len(kept_faces) > max_faces:
-                        keep_step *= 2
-                        kept_faces = kept_faces[::2]
+                    all_faces.append(tri)
 
-        if not vertices or not kept_faces:
+        if not vertices or not all_faces:
             raise ValueError("No valid geometry found in OBJ file.")
 
         verts_array = np.asarray(vertices, dtype=float)
-        faces_array = np.asarray(kept_faces, dtype=int)
+        faces_array = np.asarray(all_faces, dtype=int)
         valid = np.all((faces_array >= 0) & (faces_array < len(verts_array)), axis=1)
         faces_array = faces_array[valid]
         if len(faces_array) == 0:
             raise ValueError("OBJ face indices are invalid for the parsed vertices.")
+
+        total_faces = len(faces_array)
+        if total_faces > max_faces:
+            # Evenly subsample across the full face range to preserve full model coverage.
+            sample_idx = np.linspace(0, total_faces - 1, num=max_faces, dtype=int)
+            faces_array = faces_array[sample_idx]
 
         return verts_array, faces_array, total_faces
 
