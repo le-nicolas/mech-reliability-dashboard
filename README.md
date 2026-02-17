@@ -16,6 +16,21 @@ Desktop app for analyzing **rotating equipment reliability** (pumps, fans, compr
 - Shows failure-mode and downtime charts.
 - Exports full analysis to Excel.
 
+## Real-World Application: Rotating Equipment Reliability
+This dashboard is designed for reliability work on pumps, fans, compressors, and motors in live plant settings.
+
+It starts with the data engineers already have:
+- inspection and maintenance logs
+- vibration, temperature, and load readings
+- downtime and repair history
+
+Then it turns raw records into decisions:
+- **Descriptive analytics:** where failures are happening most often by asset, line, shift, and component.
+- **Diagnostic analytics:** which conditions are most associated with recurring failures (for example lubrication delay, overload, misalignment, elevated bearing temperature).
+- **Actionable priorities:** which assets should be serviced first, and what intervention should be done next.
+
+The practical payoff is straightforward: fewer surprise breakdowns, tighter maintenance planning, and lower production loss from downtime.
+
 ## Tech Stack
 - Python
 - PySide6 (desktop UI)
@@ -110,4 +125,3 @@ In the app, click **Load Sample** to test immediately.
 cd mech_reliability_app
 python -m pytest
 ```
-
