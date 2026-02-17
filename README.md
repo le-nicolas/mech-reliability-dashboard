@@ -14,6 +14,7 @@ Desktop app for analyzing **rotating equipment reliability** (pumps, fans, compr
   - `Total downtime`
 - Ranks assets by risk score.
 - Shows failure-mode and downtime charts.
+- Embeds a 3D CAD viewer (OBJ) with millimeter axes and isometric default view.
 - Exports full analysis to Excel.
 
 ## Real-World Application: Rotating Equipment Reliability

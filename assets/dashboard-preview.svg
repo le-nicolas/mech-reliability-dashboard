@@ -1,73 +1,88 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
-  <title id="title">Reliability Dashboard Preview</title>
-  <desc id="desc">Mock preview of desktop reliability analytics application.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" role="img" aria-labelledby="title desc">
+  <title id="title">Reliability Dashboard Preview With CAD Viewer</title>
+  <desc id="desc">Mock preview of desktop reliability analytics application with 3D CAD panel in upper-right area.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f1f7ff"/>
-      <stop offset="100%" stop-color="#d6e6ff"/>
+      <stop offset="0%" stop-color="#edf5ff"/>
+      <stop offset="100%" stop-color="#d6e7ff"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="700" fill="url(#bg)"/>
-  <rect x="40" y="30" width="1120" height="64" rx="10" fill="#0b3a66"/>
-  <text x="68" y="71" fill="#ffffff" font-size="28" font-family="Segoe UI, Arial">Reliability Dashboard - Rotating Equipment</text>
-  <rect x="40" y="115" width="1120" height="110" rx="10" fill="#ffffff" stroke="#c9d8ea"/>
 
-  <rect x="60" y="138" width="190" height="70" rx="8" fill="#ecf5ff" stroke="#b5cee9"/>
-  <text x="75" y="165" font-size="16" font-family="Segoe UI, Arial" fill="#2a4e73">Total Failures</text>
-  <text x="75" y="194" font-size="28" font-family="Segoe UI, Arial" fill="#0c416f">40</text>
+  <rect width="1200" height="740" fill="url(#bg)"/>
 
-  <rect x="270" y="138" width="190" height="70" rx="8" fill="#ecf5ff" stroke="#b5cee9"/>
-  <text x="285" y="165" font-size="16" font-family="Segoe UI, Arial" fill="#2a4e73">Downtime (hrs)</text>
-  <text x="285" y="194" font-size="28" font-family="Segoe UI, Arial" fill="#0c416f">159.0</text>
+  <rect x="38" y="26" width="1124" height="62" rx="10" fill="#0b3a66"/>
+  <text x="64" y="65" fill="#ffffff" font-size="27" font-family="Segoe UI, Arial">Reliability Dashboard - Rotating Equipment</text>
 
-  <rect x="480" y="138" width="190" height="70" rx="8" fill="#ecf5ff" stroke="#b5cee9"/>
-  <text x="495" y="165" font-size="16" font-family="Segoe UI, Arial" fill="#2a4e73">MTTR (hrs)</text>
-  <text x="495" y="194" font-size="28" font-family="Segoe UI, Arial" fill="#0c416f">2.96</text>
+  <rect x="38" y="104" width="1124" height="102" rx="10" fill="#ffffff" stroke="#c8d8ea"/>
+  <rect x="58" y="126" width="190" height="64" rx="8" fill="#eff6ff" stroke="#b7cde6"/>
+  <rect x="268" y="126" width="190" height="64" rx="8" fill="#eff6ff" stroke="#b7cde6"/>
+  <rect x="478" y="126" width="190" height="64" rx="8" fill="#eff6ff" stroke="#b7cde6"/>
+  <rect x="688" y="126" width="190" height="64" rx="8" fill="#eff6ff" stroke="#b7cde6"/>
+  <rect x="898" y="126" width="244" height="64" rx="8" fill="#eff6ff" stroke="#b7cde6"/>
+  <text x="72" y="151" font-size="15" fill="#2a4f73" font-family="Segoe UI, Arial">Total Failures</text>
+  <text x="72" y="178" font-size="26" fill="#0f426d" font-family="Segoe UI, Arial">40</text>
+  <text x="282" y="151" font-size="15" fill="#2a4f73" font-family="Segoe UI, Arial">Downtime (hrs)</text>
+  <text x="282" y="178" font-size="26" fill="#0f426d" font-family="Segoe UI, Arial">159.0</text>
+  <text x="492" y="151" font-size="15" fill="#2a4f73" font-family="Segoe UI, Arial">MTTR (hrs)</text>
+  <text x="492" y="178" font-size="26" fill="#0f426d" font-family="Segoe UI, Arial">2.96</text>
+  <text x="702" y="151" font-size="15" fill="#2a4f73" font-family="Segoe UI, Arial">MTBF (hrs)</text>
+  <text x="702" y="178" font-size="26" fill="#0f426d" font-family="Segoe UI, Arial">423.0</text>
+  <text x="912" y="151" font-size="15" fill="#2a4f73" font-family="Segoe UI, Arial">Availability (%)</text>
+  <text x="912" y="178" font-size="26" fill="#0f426d" font-family="Segoe UI, Arial">99.16</text>
 
-  <rect x="690" y="138" width="190" height="70" rx="8" fill="#ecf5ff" stroke="#b5cee9"/>
-  <text x="705" y="165" font-size="16" font-family="Segoe UI, Arial" fill="#2a4e73">MTBF (hrs)</text>
-  <text x="705" y="194" font-size="28" font-family="Segoe UI, Arial" fill="#0c416f">423.0</text>
+  <!-- Left column (large table) -->
+  <rect x="38" y="222" width="676" height="330" rx="10" fill="#ffffff" stroke="#c8d8ea"/>
+  <text x="56" y="251" font-size="18" fill="#1f3f62" font-family="Segoe UI, Arial">Asset Risk Ranking</text>
+  <rect x="56" y="264" width="640" height="270" rx="6" fill="#f8fbff" stroke="#dce8f5"/>
+  <line x1="56" y1="297" x2="696" y2="297" stroke="#dce8f5"/>
+  <text x="70" y="286" font-size="12" fill="#33567b" font-family="Consolas, monospace">asset_id   asset_type   failures   downtime_hours   risk_score</text>
+  <text x="70" y="326" font-size="12" fill="#33567b" font-family="Consolas, monospace">CPR-310    Compressor        5           36.1          100.0</text>
+  <text x="70" y="353" font-size="12" fill="#33567b" font-family="Consolas, monospace">CPR-355    Compressor        5           28.7           74.2</text>
+  <text x="70" y="380" font-size="12" fill="#33567b" font-family="Consolas, monospace">PMP-101    Pump              5           20.2           55.1</text>
+  <text x="70" y="407" font-size="12" fill="#33567b" font-family="Consolas, monospace">MTR-415    Motor             5           19.9           48.0</text>
+  <text x="70" y="434" font-size="12" fill="#33567b" font-family="Consolas, monospace">PMP-118    Pump              5           13.7           27.3</text>
+  <text x="70" y="461" font-size="12" fill="#33567b" font-family="Consolas, monospace">MTR-490    Motor             5           14.6           26.4</text>
+  <text x="70" y="488" font-size="12" fill="#33567b" font-family="Consolas, monospace">FAN-202    Fan               5           12.4           23.9</text>
+  <text x="70" y="515" font-size="12" fill="#33567b" font-family="Consolas, monospace">FAN-240    Fan               5            9.7           14.8</text>
 
-  <rect x="900" y="138" width="240" height="70" rx="8" fill="#ecf5ff" stroke="#b5cee9"/>
-  <text x="915" y="165" font-size="16" font-family="Segoe UI, Arial" fill="#2a4e73">Availability (%)</text>
-  <text x="915" y="194" font-size="28" font-family="Segoe UI, Arial" fill="#0c416f">99.06</text>
+  <!-- CAD panel: upper-right but below KPI strip -->
+  <rect x="730" y="222" width="432" height="210" rx="10" fill="#ffffff" stroke="#c8d8ea"/>
+  <text x="748" y="251" font-size="18" fill="#1f3f62" font-family="Segoe UI, Arial">3D CAD Viewer (mm, isometric)</text>
+  <rect x="748" y="264" width="396" height="132" rx="6" fill="#f8fbff" stroke="#dce8f5"/>
+  <polygon points="838,352 918,318 1022,344 939,381" fill="#9db3c9" stroke="#2f4d6b" stroke-width="2"/>
+  <polygon points="918,318 914,287 1015,314 1022,344" fill="#b8c9d9" stroke="#2f4d6b" stroke-width="2"/>
+  <polygon points="838,352 834,321 914,287 918,318" fill="#7f9db9" stroke="#2f4d6b" stroke-width="2"/>
+  <line x1="838" y1="352" x2="939" y2="381" stroke="#2f4d6b" stroke-width="1"/>
+  <line x1="918" y1="318" x2="939" y2="381" stroke="#2f4d6b" stroke-width="1"/>
+  <line x1="1022" y1="344" x2="939" y2="381" stroke="#2f4d6b" stroke-width="1"/>
+  <text x="752" y="413" font-size="12" fill="#345777" font-family="Segoe UI, Arial">Rotating.obj | vertices: 253,591 | faces shown: 26,152 / 418,424</text>
 
-  <rect x="40" y="245" width="550" height="410" rx="10" fill="#ffffff" stroke="#c9d8ea"/>
-  <text x="58" y="273" font-size="18" font-family="Segoe UI, Arial" fill="#1f3f62">Asset Risk Ranking</text>
-  <rect x="58" y="287" width="514" height="348" rx="6" fill="#f8fbff" stroke="#dce8f5"/>
-  <line x1="58" y1="322" x2="572" y2="322" stroke="#dce8f5"/>
-  <text x="72" y="311" font-size="13" font-family="Consolas, monospace" fill="#33567b">asset_id  failures  downtime  risk_score</text>
-  <text x="72" y="352" font-size="13" font-family="Consolas, monospace" fill="#33567b">CPR-310         5      36.1        100.0</text>
-  <text x="72" y="382" font-size="13" font-family="Consolas, monospace" fill="#33567b">CPR-355         5      28.7         74.2</text>
-  <text x="72" y="412" font-size="13" font-family="Consolas, monospace" fill="#33567b">PMP-101         5      20.2         55.1</text>
-  <text x="72" y="442" font-size="13" font-family="Consolas, monospace" fill="#33567b">MTR-415         5      19.9         48.0</text>
-  <text x="72" y="472" font-size="13" font-family="Consolas, monospace" fill="#33567b">PMP-118         5      13.7         27.3</text>
-  <text x="72" y="502" font-size="13" font-family="Consolas, monospace" fill="#33567b">MTR-490         5      14.6         26.4</text>
-  <text x="72" y="532" font-size="13" font-family="Consolas, monospace" fill="#33567b">FAN-202         5      12.4         23.9</text>
-  <text x="72" y="562" font-size="13" font-family="Consolas, monospace" fill="#33567b">FAN-240         5       9.7         14.8</text>
+  <!-- Right middle table -->
+  <rect x="730" y="442" width="432" height="110" rx="10" fill="#ffffff" stroke="#c8d8ea"/>
+  <text x="748" y="470" font-size="18" fill="#1f3f62" font-family="Segoe UI, Arial">Factor Importance</text>
+  <rect x="748" y="482" width="396" height="56" rx="6" fill="#f8fbff" stroke="#dce8f5"/>
+  <text x="760" y="503" font-size="12" fill="#345777" font-family="Consolas, monospace">factor                 high_risk_mean   low_risk_mean   lift</text>
+  <text x="760" y="524" font-size="12" fill="#345777" font-family="Consolas, monospace">temperature_c             93.2             74.1         19.1</text>
 
-  <rect x="610" y="245" width="550" height="200" rx="10" fill="#ffffff" stroke="#c9d8ea"/>
-  <text x="628" y="273" font-size="18" font-family="Segoe UI, Arial" fill="#1f3f62">Failures by Mode</text>
-  <rect x="628" y="287" width="514" height="140" rx="6" fill="#f8fbff" stroke="#dce8f5"/>
-  <rect x="665" y="311" width="150" height="18" fill="#0b5fa5"/>
-  <rect x="665" y="338" width="130" height="18" fill="#0b5fa5"/>
-  <rect x="665" y="365" width="100" height="18" fill="#0b5fa5"/>
-  <rect x="665" y="392" width="80" height="18" fill="#0b5fa5"/>
-  <text x="635" y="325" font-size="12" font-family="Segoe UI, Arial" fill="#305273">Bearing Wear</text>
-  <text x="635" y="352" font-size="12" font-family="Segoe UI, Arial" fill="#305273">Overheat</text>
-  <text x="635" y="379" font-size="12" font-family="Segoe UI, Arial" fill="#305273">Seal Leak</text>
-  <text x="635" y="406" font-size="12" font-family="Segoe UI, Arial" fill="#305273">Imbalance</text>
+  <!-- Bottom charts -->
+  <rect x="38" y="566" width="554" height="156" rx="10" fill="#ffffff" stroke="#c8d8ea"/>
+  <text x="56" y="594" font-size="18" fill="#1f3f62" font-family="Segoe UI, Arial">Failures by Mode</text>
+  <rect x="56" y="606" width="518" height="102" rx="6" fill="#f8fbff" stroke="#dce8f5"/>
+  <rect x="90" y="624" width="160" height="14" fill="#0b5fa5"/>
+  <rect x="90" y="646" width="132" height="14" fill="#0b5fa5"/>
+  <rect x="90" y="668" width="105" height="14" fill="#0b5fa5"/>
+  <text x="62" y="636" font-size="11" fill="#355b7f" font-family="Segoe UI, Arial">Bearing Wear</text>
+  <text x="62" y="658" font-size="11" fill="#355b7f" font-family="Segoe UI, Arial">Overheat</text>
+  <text x="62" y="680" font-size="11" fill="#355b7f" font-family="Segoe UI, Arial">Seal Leak</text>
 
-  <rect x="610" y="455" width="550" height="200" rx="10" fill="#ffffff" stroke="#c9d8ea"/>
-  <text x="628" y="483" font-size="18" font-family="Segoe UI, Arial" fill="#1f3f62">Downtime by Asset (Top 10)</text>
-  <rect x="628" y="497" width="514" height="140" rx="6" fill="#f8fbff" stroke="#dce8f5"/>
-  <rect x="680" y="605" width="35" height="16" fill="#0e9c68"/>
-  <rect x="730" y="575" width="35" height="46" fill="#0e9c68"/>
-  <rect x="780" y="542" width="35" height="79" fill="#0e9c68"/>
-  <rect x="830" y="530" width="35" height="91" fill="#0e9c68"/>
-  <rect x="880" y="505" width="35" height="116" fill="#0e9c68"/>
-  <rect x="930" y="560" width="35" height="61" fill="#0e9c68"/>
-  <rect x="980" y="593" width="35" height="28" fill="#0e9c68"/>
-  <rect x="1030" y="612" width="35" height="9" fill="#0e9c68"/>
+  <rect x="608" y="566" width="554" height="156" rx="10" fill="#ffffff" stroke="#c8d8ea"/>
+  <text x="626" y="594" font-size="18" fill="#1f3f62" font-family="Segoe UI, Arial">Downtime by Asset (Top 10)</text>
+  <rect x="626" y="606" width="518" height="102" rx="6" fill="#f8fbff" stroke="#dce8f5"/>
+  <rect x="700" y="694" width="30" height="10" fill="#0e9c68"/>
+  <rect x="744" y="676" width="30" height="28" fill="#0e9c68"/>
+  <rect x="788" y="652" width="30" height="52" fill="#0e9c68"/>
+  <rect x="832" y="637" width="30" height="67" fill="#0e9c68"/>
+  <rect x="876" y="612" width="30" height="92" fill="#0e9c68"/>
+  <rect x="920" y="646" width="30" height="58" fill="#0e9c68"/>
+  <rect x="964" y="671" width="30" height="33" fill="#0e9c68"/>
 </svg>
-
