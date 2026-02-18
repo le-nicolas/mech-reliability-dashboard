@@ -9,9 +9,11 @@ from matplotlib.figure import Figure
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
+    QAbstractItemView,
     QFileDialog,
     QGridLayout,
     QGroupBox,
+    QHeaderView,
     QHBoxLayout,
     QLabel,
     QMainWindow,
@@ -33,18 +35,18 @@ class ReliabilityWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("Reliability Dashboard - Rotating Equipment")
-        self.resize(1366, 840)
+        self.resize(1600, 940)
         self.results: AnalysisResults | None = None
         self.current_cad_path: Path | None = None
 
         self.kpi_labels: dict[str, QLabel] = {}
         self.asset_table = QTableWidget()
         self.factor_table = QTableWidget()
-        self.failure_fig = Figure(figsize=(5.8, 3.0), tight_layout=True)
+        self.failure_fig = Figure(figsize=(7.2, 3.6), constrained_layout=True, dpi=110)
         self.failure_canvas = FigureCanvas(self.failure_fig)
-        self.downtime_fig = Figure(figsize=(5.8, 3.0), tight_layout=True)
+        self.downtime_fig = Figure(figsize=(7.2, 3.6), constrained_layout=True, dpi=110)
         self.downtime_canvas = FigureCanvas(self.downtime_fig)
-        self.cad_fig = Figure(figsize=(5.8, 3.0), tight_layout=True)
+        self.cad_fig = Figure(figsize=(7.0, 3.8), constrained_layout=True, dpi=110)
         self.cad_canvas = FigureCanvas(self.cad_fig)
         self.cad_info_label = QLabel("No CAD loaded")
         self.cad_info_label.setStyleSheet("color: #32506D;")
@@ -58,8 +60,8 @@ class ReliabilityWindow(QMainWindow):
     def _build_ui(self) -> None:
         root = QWidget()
         root_layout = QVBoxLayout(root)
-        root_layout.setContentsMargins(12, 12, 12, 12)
-        root_layout.setSpacing(10)
+        root_layout.setContentsMargins(14, 14, 14, 14)
+        root_layout.setSpacing(12)
 
         toolbar = QHBoxLayout()
         load_btn = QPushButton("Load CSV")
@@ -79,9 +81,15 @@ class ReliabilityWindow(QMainWindow):
 
         root_layout.addWidget(self._build_kpi_box())
 
+        self.asset_table.setMinimumHeight(340)
+        self.factor_table.setMinimumHeight(170)
+        self.failure_canvas.setMinimumHeight(300)
+        self.downtime_canvas.setMinimumHeight(300)
+        self.cad_canvas.setMinimumHeight(280)
+
         content = QGridLayout()
-        content.setHorizontalSpacing(10)
-        content.setVerticalSpacing(10)
+        content.setHorizontalSpacing(12)
+        content.setVerticalSpacing(12)
         content.addWidget(self._wrap_widget("Asset Risk Ranking", self.asset_table), 0, 0, 2, 1)
         content.addWidget(
             self._wrap_widget("3D CAD Viewer (Units: mm | View: Isometric)", self._build_cad_panel()),
@@ -93,9 +101,9 @@ class ReliabilityWindow(QMainWindow):
         content.addWidget(self._wrap_widget("Downtime by Asset (Top 10)", self.downtime_canvas), 2, 1)
         content.setColumnStretch(0, 3)
         content.setColumnStretch(1, 2)
-        content.setRowStretch(0, 3)
-        content.setRowStretch(1, 2)
-        content.setRowStretch(2, 2)
+        content.setRowStretch(0, 2)
+        content.setRowStretch(1, 1)
+        content.setRowStretch(2, 4)
         root_layout.addLayout(content)
 
         self.setCentralWidget(root)
@@ -104,6 +112,8 @@ class ReliabilityWindow(QMainWindow):
     def _build_kpi_box(self) -> QGroupBox:
         box = QGroupBox("Plant Reliability Snapshot")
         layout = QGridLayout(box)
+        layout.setHorizontalSpacing(18)
+        layout.setVerticalSpacing(6)
         names = {
             "total_failures": "Total Failures",
             "total_downtime_hours": "Downtime (hrs)",
@@ -113,9 +123,10 @@ class ReliabilityWindow(QMainWindow):
         }
         for i, (key, title) in enumerate(names.items()):
             name_label = QLabel(title)
+            name_label.setStyleSheet("color: #294861; font-size: 12px; font-weight: 600;")
             value_label = QLabel("-")
             value_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
-            value_label.setStyleSheet("font-size: 16px; font-weight: 600; color: #113355;")
+            value_label.setStyleSheet("font-size: 20px; font-weight: 700; color: #113355;")
             layout.addWidget(name_label, 0, i)
             layout.addWidget(value_label, 1, i)
             self.kpi_labels[key] = value_label
@@ -228,6 +239,7 @@ class ReliabilityWindow(QMainWindow):
             label.setText(formats[key].format(metrics.get(key, 0.0)))
 
     def _load_table(self, table: QTableWidget, frame: pd.DataFrame) -> None:
+        table.setSortingEnabled(False)
         table.clear()
         table.setRowCount(len(frame))
         table.setColumnCount(len(frame.columns))
@@ -242,30 +254,57 @@ class ReliabilityWindow(QMainWindow):
                     item.setTextAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
                 table.setItem(row_idx, col_idx, item)
 
-        table.resizeColumnsToContents()
         table.setAlternatingRowColors(True)
+        table.setWordWrap(False)
+        table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        table.verticalHeader().setVisible(False)
+        table.verticalHeader().setDefaultSectionSize(26)
+        header = table.horizontalHeader()
+        header.setStretchLastSection(True)
+        if frame.shape[1] <= 8:
+            header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        else:
+            header.setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
         table.setSortingEnabled(True)
 
     def _draw_failure_modes(self, frame: pd.DataFrame) -> None:
         self.failure_fig.clear()
         ax = self.failure_fig.add_subplot(111)
+        if frame.empty:
+            ax.axis("off")
+            ax.text(0.5, 0.5, "No failure mode data", ha="center", va="center", transform=ax.transAxes)
+            self.failure_canvas.draw()
+            return
         top = frame.head(8).copy()
-        ax.barh(top["failure_mode"], top["failures"], color="#0B5FA5")
+        ax.barh(top["failure_mode"], top["failures"], color="#0B5FA5", height=0.68)
         ax.invert_yaxis()
-        ax.set_xlabel("Failure Count")
-        ax.set_ylabel("Failure Mode")
-        ax.grid(axis="x", linestyle="--", alpha=0.3)
+        ax.set_xlabel("Failure Count", fontsize=11, labelpad=8)
+        ax.set_ylabel("Failure Mode", fontsize=11, labelpad=8)
+        ax.tick_params(axis="both", labelsize=10)
+        ax.grid(axis="x", linestyle="--", alpha=0.28)
+        ax.margins(y=0.12)
         self.failure_canvas.draw()
 
     def _draw_downtime_by_asset(self, frame: pd.DataFrame) -> None:
         self.downtime_fig.clear()
         ax = self.downtime_fig.add_subplot(111)
+        if frame.empty:
+            ax.axis("off")
+            ax.text(0.5, 0.5, "No downtime data", ha="center", va="center", transform=ax.transAxes)
+            self.downtime_canvas.draw()
+            return
         top = frame.sort_values("downtime_hours", ascending=False).head(10).copy()
-        ax.bar(top["asset_id"], top["downtime_hours"], color="#0E9C68")
-        ax.set_ylabel("Downtime (hrs)")
-        ax.set_xlabel("Asset")
-        ax.tick_params(axis="x", rotation=35)
-        ax.grid(axis="y", linestyle="--", alpha=0.3)
+        ax.bar(top["asset_id"], top["downtime_hours"], color="#0E9C68", width=0.68)
+        ax.set_ylabel("Downtime (hrs)", fontsize=11, labelpad=8)
+        ax.set_xlabel("Asset", fontsize=11, labelpad=8)
+        ax.tick_params(axis="y", labelsize=10)
+        ax.tick_params(axis="x", labelsize=10, rotation=28)
+        for label in ax.get_xticklabels():
+            label.set_horizontalalignment("right")
+        ax.grid(axis="y", linestyle="--", alpha=0.28)
+        ax.margins(x=0.03)
         self.downtime_canvas.draw()
 
     def _draw_cad_placeholder(self, text: str) -> None:
