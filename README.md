@@ -7,6 +7,9 @@ Desktop app for analyzing **rotating equipment reliability** (pumps, fans, compr
 ## What It Does
 - Imports maintenance/failure CSV files.
 - Cleans and standardizes columns automatically.
+- Captures field inspection defects with photo evidence and structured severity/location tags.
+- Auto-generates print-ready inspection reports (HTML + PDF) with picture captions and sign-off lines.
+- Converts inspection defects directly into maintenance-log rows for analytics ingestion.
 - Computes plant KPIs:
   - `MTBF`
   - `MTTR`
@@ -47,6 +50,8 @@ mech_reliability_app/
     analytics.py
     io_utils.py
     main.py
+    field_dialog.py
+    field_pipeline.py
     ui.py
   assets/
     dashboard-preview.svg
